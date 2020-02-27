@@ -1,7 +1,6 @@
 import React from "react";
 import "./ToDo.css";
-
-var i = 0;
+import TaskTable from "./TaskTable";
 
 class ToDo extends React.Component {
   constructor(props) {
@@ -81,14 +80,7 @@ class ToDo extends React.Component {
           <button>Do it</button>
         </form>
         <br></br>
-        <ul>
-          {this.state.tasks.map(({ task }) => (
-            <div>
-              <li key={i++}>{task}</li>
-              <button>Done !</button>
-            </div>
-          ))}
-        </ul>
+        <TaskTable option={"I am in"} tasks={this.state.tasks} />
       </div>
     );
   }
