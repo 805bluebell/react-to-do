@@ -36,7 +36,7 @@ class ToDo extends React.Component {
   saveTask(event) {
     event.preventDefault();
     let temp = this.state.tasks;
-    let temp2 = { task: this.state.currentTyping, status: "todo" };
+    let temp2 = { task: this.state.currentTyping, status: "toBeCompleted" };
     temp.push(temp2);
     this.setState({
       tasks: temp
@@ -80,7 +80,7 @@ class ToDo extends React.Component {
           <button>Do it</button>
         </form>
         <br></br>
-        <TaskTable option={"I am in"} tasks={this.state.tasks} />
+        <TaskTable option={this.state.currentViewType} tasks={this.state.tasks} />
       </div>
     );
   }

@@ -9,7 +9,9 @@ class TaskTable extends Component {
         <ul>
           {this.props.tasks
             .filter(t => {
-              return t.status === "all" ? t : t.status === "all";
+              // if (t.status === this.props.option)
+              //   return t;
+              return t.status == this.props.option || this.props.option == "all";
             })
             .map(({ task }) => (
               <div>
