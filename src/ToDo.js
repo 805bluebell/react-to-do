@@ -2,17 +2,23 @@ import React from "react";
 import "./ToDo.css";
 import TaskTable from "./TaskTable";
 
+// id for to-do list items
+let i = 0;
+
 class ToDo extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       tasks: [],
       currentViewType: "all",
-      currentTyping: ""
+      currentTyping: "",
+      trigger: ""
     };
     this.decideCurrentViewType = this.decideCurrentViewType.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.saveTask = this.saveTask.bind(this);
+    this.updateTask = this.updateTask.bind(this);
   }
 
   // Tasks will be like this
@@ -36,11 +42,21 @@ class ToDo extends React.Component {
   saveTask(event) {
     event.preventDefault();
     let temp = this.state.tasks;
-    let temp2 = { task: this.state.currentTyping, status: "toBeCompleted" };
+    let temp2 = {
+      task: this.state.currentTyping,
+      status: "toBeCompleted",
+      id: i++
+    };
     temp.push(temp2);
     this.setState({
-      tasks: temp
+      tasks: temp,
+      currentTyping: ""
     });
+  }
+
+  updateTask(trigger) {
+    console.log("we are in main ", trigger);
+    // this.setState({ trigger: trigger });
   }
 
   render() {
@@ -80,7 +96,11 @@ class ToDo extends React.Component {
           <button>Do it</button>
         </form>
         <br></br>
-        <TaskTable option={this.state.currentViewType} tasks={this.state.tasks} />
+        <TaskTable
+          option={this.state.currentViewType}
+          tasks={this.state.tasks}
+          updateTask={this.updateTask}
+        />
       </div>
     );
   }
