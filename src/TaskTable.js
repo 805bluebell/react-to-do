@@ -12,7 +12,7 @@ class TaskTable extends Component {
   render() {
     return (
       <div>
-        <ul>
+        <ul style={{ listStyle: "none" }}>
           {this.props.tasks
             .filter(t => {
               // if (t.status === this.props.option)
@@ -21,9 +21,9 @@ class TaskTable extends Component {
                 t.status === this.props.option || this.props.option === "all"
               );
             })
-            .map(({ task }) => (
-              <div key={task.id} onClick={() => this.props.updateTask(task.id)}>
-                <li key={task.id + 100}>{task}</li>
+            .map(t => (
+              <div key={t.id} onClick={() => this.props.updateTask(t.id)}>
+                <li key={t.id + 100}>{t.task}</li>
                 <button>Done !</button>
               </div>
             ))}

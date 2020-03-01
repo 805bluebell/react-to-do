@@ -56,6 +56,8 @@ class ToDo extends React.Component {
 
   updateTask(trigger) {
     console.log("we are in main ", trigger);
+    let temp = this.state.tasks;
+    temp.map(t => (t.id === trigger ? (t.status = "done") : 1));
     // this.setState({ trigger: trigger });
   }
 
@@ -70,15 +72,17 @@ class ToDo extends React.Component {
             value="all"
             name="viewType"
             onChange={this.decideCurrentViewType}
+            checked={this.state.currentViewType === "all"}
           />
           <label for="viewType">All</label>
           <br></br>
           <input
             type="radio"
-            id="completed"
-            value="completed"
+            id="done"
+            value="done"
             name="viewType"
             onChange={this.decideCurrentViewType}
+            checked={this.state.currentViewType === "done"}
           />
           <label for="viewType">Completed</label>
           <br></br>
@@ -88,11 +92,17 @@ class ToDo extends React.Component {
             value="toBeCompleted"
             name="viewType"
             onChange={this.decideCurrentViewType}
+            checked={this.state.currentViewType === "toBeCompleted"}
           />
           <label for="viewType">To Be Completed</label>
         </div>
         <form onSubmit={this.saveTask}>
-          <input type="text" id="task" onChange={this.handleChange} />
+          <input
+            type="text"
+            id="task"
+            onChange={this.handleChange}
+            value={this.state.currentTyping}
+          />
           <button>Do it</button>
         </form>
         <br></br>
